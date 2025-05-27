@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 20:31:59 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 14:47:27 by khhihi           ###   ########.fr       */
+/*   Created: 2025/05/27 15:00:28 by khhihi            #+#    #+#             */
+/*   Updated: 2025/05/27 15:40:11 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+int	start_simulation(t_data *data)
 {
-    t_data  data;
+	int	i = 0;
+	pthread_t monitor;
 
-    if (ac != 5 && ac != 6)
-        return (printf("error"), 1);
-    if (check_args(av) || init(&data, av))
-        return (1);
-    if (data.number_philos == 1)
-    {
-        printf("0 1 is thinking\n");
-        usleep(data.die_time * 1000);
-        printf("%d 1 died\n", data.die_time);
-        return (free_data(&data), 0);
-    }
-    start_simulation(data);
-    free_data(&data);
+	while (i < data->number_philos)
+	{
+		if (pthread_create(data->philos[i].thread, 0, philo_routine(data), &data->philos[i]) != 0)
+			return (write(2, "Error: Failed to create philosopher thread\n", 44), 1);
+		i++;
+	}
+	pthread_create(&monitor)
 }

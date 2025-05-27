@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 13:39:25 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/27 15:04:26 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
     int                 two_forks;
     bool                has_fork;
     pthread_t		    routine;
+    pthread_t			thread;
     t_data              *data;
     pthread_mutex_t		meal_mutex;
 
@@ -56,3 +57,4 @@ int     check_args(char **av);
 int     init(t_data *data, char **av);
 struct  timeval get_curr_time(void);
 void	free_data(t_data *data);
+int	    start_simulation(t_data *data);
