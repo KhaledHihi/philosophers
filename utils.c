@@ -6,11 +6,32 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/25 16:26:45 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/27 13:47:49 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int init_philos(t_data *data)
+{
+    int i;
+
+    data->philos = malloc(sizeof(t_philo) * data->number_philos);
+    if (!data->philos)
+        return (0);
+    i = 0;
+    while (i < data->number_philos)
+    {
+        memset(&data->philos[i], 0 ,sizeof(t_philo));
+        data->philos[i].id = i + 1;
+        data->philos->data = data;
+        data->philos->last_meal = get_curr_time();
+        data->philos->meals_eaten = 0;
+        pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
+		i++;
+    }
+    return (1);
+}
 
 long long get_time(void)
 {
@@ -22,7 +43,6 @@ long long get_time(void)
 int init_data(t_data *data, char **av)
 {
     int i = 0;
-    write(1, "here===\n", 9);
     memset(data, 0, sizeof(t_data));
     data->number_philos = ft_atoi(av[1]);
     data->die_time = ft_atoi(av[2]);
@@ -46,7 +66,7 @@ int init_data(t_data *data, char **av)
 
 int    init(t_data *data, char **av)
 {
-    if (!init_data(data, av))
+    if (!init_data(data, av) || !init_philos(data))
         return (1);
     return (0);
 }
@@ -59,9 +79,8 @@ int check_args(char **av)
     if (ft_atoi(av[3]) < 1)
         return (printf("Enter a valid time to eat number"), 1);
     if (ft_atoi(av[4]) < 1)
-        return (printf("Enter a valid time to sleep number"), 1);;
+        return (printf("Enter a valid time to sleep number"), 1);
     if (ft_atoi(av[5]) < 1)
         return (printf("Enter a valid times to eat number"), 1);
-    write(1, "here===\n", 9);
     return (0);
 }

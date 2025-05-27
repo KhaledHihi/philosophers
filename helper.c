@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/23 20:31:59 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 13:47:24 by khhihi           ###   ########.fr       */
+/*   Created: 2025/05/27 12:54:23 by khhihi            #+#    #+#             */
+/*   Updated: 2025/05/27 13:41:03 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+struct timeval get_curr_time(void)
 {
-    t_data  data;
+	struct timeval tv;
 
-    if (ac != 5 && ac != 6)
-        return (printf("error"), 1);
-    if (check_args(av) || init(&data, av))
-        return (1);
-    if (data.number_philos == 1)
-    {
-        printf("0 1 is thinking\n");
-        usleep(data.die_time * 1000);
-        printf("%d 1 died\n", data.die_time);
-        return (free_data(&data), 0);
-    }
-    free_data(&data);
+	gettimeofday(&tv, NULL);
+	return (tv);
 }
+
+void	free_data(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->number_philos)
+		pthread_mutex_destroy(&data->forks[i++]);
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
+	pthread_mutex_destroy(&data->meal_mutex);
+	free(data->forks);
+	free(data->philos);
+	// free(data);
+}
+

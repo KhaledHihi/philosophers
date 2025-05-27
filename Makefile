@@ -2,7 +2,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-SRC = main.c philo.c utils.c
+SRC = main.c helper.c utils.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 LIBFT = libft/libft.a
@@ -11,6 +11,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C libft
+	$(MAKE) clean -C libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	$(MAKE) clean
 
