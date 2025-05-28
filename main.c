@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:31:59 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 14:47:27 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/28 15:17:28 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int main(int ac, char **av)
         printf("%d 1 died\n", data.die_time);
         return (free_data(&data), 0);
     }
-    start_simulation(data);
+    start_simulation(&data);
     free_data(&data);
 }

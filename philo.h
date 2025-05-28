@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 15:04:26 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/28 17:23:38 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,5 @@ int     init(t_data *data, char **av);
 struct  timeval get_curr_time(void);
 void	free_data(t_data *data);
 int	    start_simulation(t_data *data);
+void	*the_monitor(void *arg);
+long long get_time(void);

@@ -6,12 +6,20 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:54:23 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 13:41:03 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/28 17:23:04 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+void print_status(t_philo *philo, char *status)
+{
+	long long time;
 
+	time = get_time() - philo->data->start;
+	pthread_mutex_lock(&philo->data->print_mutex);
+	printf("%lld %d %s\n",time, philo->id, status);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+}
 struct timeval get_curr_time(void)
 {
 	struct timeval tv;
