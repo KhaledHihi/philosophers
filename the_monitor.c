@@ -6,10 +6,14 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:11:29 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/28 15:12:30 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/29 15:32:38 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*the_monitor(void *arg);
+void	*the_monitor(void *arg)
+{
+	(void)arg;
+	return (NULL);
+}

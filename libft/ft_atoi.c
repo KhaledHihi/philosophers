@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:49:57 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/27 13:30:08 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/29 15:36:51 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *str)
 	s = 1;
 	r = 0;
 	if (!str)
-		return (-1);
+		return (0);
 	while ((str[i]) && (str[i] <= 32))
 		i++;
 	if (str[i] == '+' || str[i] == '-')

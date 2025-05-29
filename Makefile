@@ -2,7 +2,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-SRC = main.c helper.c utils.c
+SRC = main.c helper.c init.c simulation.c the_monitor.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 LIBFT = libft/libft.a
