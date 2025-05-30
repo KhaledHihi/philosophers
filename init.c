@@ -6,13 +6,13 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/29 15:58:23 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:23:26 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	init_global_mutexes(t_data *data)
+int	init_global_mutexes(t_data *data)
 {
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 		return (write(2, "Error: Mutex initialization failed\n", 35), 1);
@@ -77,7 +77,7 @@ int init_data(t_data *data, char **av)
 
 int    init(t_data *data, char **av)
 {
-    if (!init_data(data, av) || !init_philos(data) || init_global_mutexes(data) || init_forks(data))
+    if (!init_data(data, av) || !init_philos(data) || init_global_mutexes(data))
         return (1);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/29 15:57:57 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:22:16 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ long long       get_time(void);
 struct timeval  get_curr_time(void);
 int             check_is_dead(t_philo *philo);
 void            print_status(t_philo *philo, char *status);
-int	            init_forks(t_data *data);

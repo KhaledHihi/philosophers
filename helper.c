@@ -6,28 +6,11 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:54:23 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/29 15:58:51 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/29 21:44:35 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	init_forks(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->number_philos)
-	{
-		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
-		{
-			write(2, "Error: Mutex initialization failed\n", 35);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
 
 int check_is_dead(t_philo *philo)
 {
