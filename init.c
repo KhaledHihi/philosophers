@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/29 21:23:26 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/05/31 14:20:35 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int init_philos(t_data *data)
     {
         memset(&data->philos[i], 0 ,sizeof(t_philo));
         data->philos[i].id = i + 1;
-        data->philos->data = data;
+        data->philos[i].data = data;
         data->philos->last_meal = get_curr_time();
         data->philos->meals_eaten = 0;
         pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
