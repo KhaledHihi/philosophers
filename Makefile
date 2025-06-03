@@ -2,16 +2,13 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-SRC = main.c helper.c init.c simulation.c the_monitor.c
+SRC = main.c helper.c init.c simulation.c the_monitor.c ft_atoi.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
-LIBFT = libft/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(MAKE) -C libft
-	$(MAKE) clean -C libft
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 	$(MAKE) clean
 

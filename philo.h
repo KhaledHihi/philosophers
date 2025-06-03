@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/03 13:39:26 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 13:40:41 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <time.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include "libft/libft.h"
 #include <stdint.h>
 
 typedef struct s_data t_data;
