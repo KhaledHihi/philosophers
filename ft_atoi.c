@@ -6,11 +6,11 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:49:57 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/29 15:36:51 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 13:38:21 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {

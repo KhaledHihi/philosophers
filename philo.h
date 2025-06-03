@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/31 14:32:32 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 13:39:26 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include "libft/libft.h"
+#include <stdint.h>
 
 typedef struct s_data t_data;
 
@@ -43,8 +44,8 @@ typedef struct s_data
     int die_time;
     int eat_time;
     int sleep_time;
-    int meals;
     int dead;
+    int		must_eat_count;
     long long           start;
     pthread_mutex_t     *forks;
     pthread_mutex_t		meal_mutex;
@@ -64,3 +65,6 @@ struct timeval  get_curr_time(void);
 int             check_is_dead(t_philo *philo);
 void            print_status(t_philo *philo, char *status);
 void            *philo_routine(void *arg);
+void	        smart_sleep(t_philo *philo, long long duration);
+long long	    get_current_time_ms(void);
+int	            ft_atoi(const char *str);

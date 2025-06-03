@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:00:28 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/31 14:31:45 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 01:12:55 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	*philo_routine(void *arg)
 		if (check_is_dead(philo))
 			return (NULL);
 		print_status(philo, "is sleeping");
+		smart_sleep(philo, philo->data->sleep_time);
 	}
 	return (NULL);
 }
@@ -84,7 +85,7 @@ void	*philo_routine(void *arg)
 int	start_simulation(t_data *data)
 {
 	int	i = 0;
-	// pthread_t monitor;
+	pthread_t monitor;
 
 	while (i < data->number_philos)
 	{
@@ -92,11 +93,11 @@ int	start_simulation(t_data *data)
 			return (write(2, "Error: Failed to create philosopher thread\n", 44), 1);
 		i++;
 	}
-	// if (pthread_create(&monitor, 0 ,the_monitor, data) != 0)
-	// 	return (write(2, "Error: Failed to create monitor thread\n", 40), 1);
+	if (pthread_create(&monitor, NULL ,the_monitor, data) != 0)
+		return (write(2, "Error: Failed to create monitor thread\n", 40), 1);
 	i = 0;
 	while (i < data->number_philos)
 		pthread_join(data->philos[i++].thread, NULL);
-	// pthread_join(&monitor, NULL);
+	pthread_join(monitor, NULL);
 	return (free_data(data), 0);
 }

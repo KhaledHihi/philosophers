@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/05/31 14:20:35 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 01:05:41 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int init_data(t_data *data, char **av)
     data->eat_time = ft_atoi(av[3]);
     data->sleep_time = ft_atoi(av[4]);
     if(av[5])
-        data->meals = ft_atoi(av[5]);
+        data->must_eat_count = ft_atoi(av[5]);
     data->dead = 0;
     data->start = get_time();
     data->forks = malloc(sizeof(pthread_mutex_t) * data->number_philos);
