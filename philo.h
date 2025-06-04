@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:32:44 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/03 13:40:41 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/04 13:46:24 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_data t_data;
 typedef struct s_philo
 {
     int                 id;
-    struct timeval      last_meal;
+    long long           last_meal;
     int                 meals_eaten;
     int                 two_forks;
     bool                has_fork;
@@ -55,15 +55,12 @@ typedef struct s_data
 
 int             check_args(char **av);
 int             init(t_data *data, char **av);
-struct          timeval get_curr_time(void);
 void	        free_data(t_data *data);
 int	            start_simulation(t_data *data);
 void	        *the_monitor(void *arg);
-long long       get_time(void);
-struct timeval  get_curr_time(void);
 int             check_is_dead(t_philo *philo);
 void            print_status(t_philo *philo, char *status);
 void            *philo_routine(void *arg);
 void	        smart_sleep(t_philo *philo, long long duration);
-long long	    get_current_time_ms(void);
 int	            ft_atoi(const char *str);
+long long	    get_curr_time_ms(void);

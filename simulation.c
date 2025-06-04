@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:00:28 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/03 01:12:55 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/04 13:52:35 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ void	*philo_routine(void *arg)
 		print_status(philo, "is thinking");
 		pick_fork(philo);
 		pthread_mutex_lock(&philo->meal_mutex);
-		philo->last_meal = get_curr_time();
+		philo->last_meal = get_curr_time_ms();
 		pthread_mutex_unlock(&philo->meal_mutex);
 		print_status(philo, "has taken a fork");
+		print_status(philo, "has taken a fork");
 		print_status(philo, "is eating");
+		smart_sleep(philo, philo->data->eat_time);
 		pthread_mutex_lock(&philo->meal_mutex);
 		philo->meals_eaten++;
 		pthread_mutex_unlock(&philo->meal_mutex);

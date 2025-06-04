@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:31:59 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/02 13:20:49 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/03 17:52:40 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ int main(int ac, char **av)
         return (free_data(&data), 0);
     }
     start_simulation(&data);
-    free_data(&data);
 }

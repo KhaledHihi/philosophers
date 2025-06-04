@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/03 01:05:41 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/04 13:27:32 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,12 @@ int init_philos(t_data *data)
         memset(&data->philos[i], 0 ,sizeof(t_philo));
         data->philos[i].id = i + 1;
         data->philos[i].data = data;
-        data->philos->last_meal = get_curr_time();
-        data->philos->meals_eaten = 0;
+        data->philos[i].last_meal = get_curr_time_ms();
+        data->philos[i].meals_eaten = 0;
         pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 		i++;
     }
     return (1);
-}
-
-long long get_time(void)
-{
-    struct timeval time;
-    gettimeofday(&time, NULL);
-    return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 int init_data(t_data *data, char **av)
@@ -61,8 +54,10 @@ int init_data(t_data *data, char **av)
     data->sleep_time = ft_atoi(av[4]);
     if(av[5])
         data->must_eat_count = ft_atoi(av[5]);
+    else
+        data->must_eat_count = -1;
     data->dead = 0;
-    data->start = get_time();
+    data->start = get_curr_time_ms();
     data->forks = malloc(sizeof(pthread_mutex_t) * data->number_philos);
     if(!data->forks)
         return (0);
