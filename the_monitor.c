@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:11:29 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/04 13:54:57 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/04 13:59:24 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ static int check_death(t_data *data, int i)
     if ((current_time_ms - last_meal_time_ms) >= data->die_time)
     {
         pthread_mutex_lock(&data->death_mutex);
-        if (data->dead) // Check if already dead
+        if (data->dead)
         {
             pthread_mutex_unlock(&data->death_mutex);
             return (0);
         }
-        // Mark as dead and print death message
         data->dead = 1;
         timestamp = current_time_ms - data->start;
         pthread_mutex_unlock(&data->death_mutex);
