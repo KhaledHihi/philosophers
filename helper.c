@@ -40,39 +40,38 @@ int	check_is_dead(t_philo *philo)
 	return (is_dead);
 }
 
-void print_status(t_philo *philo, char *status)
+void	print_status(t_philo *philo, char *status)
 {
-    long long		timestamp;
+	long long	timestamp;
 
-    pthread_mutex_lock(&philo->data->print_mutex);
-    if (check_is_dead(philo))
-    {
-        pthread_mutex_unlock(&philo->data->print_mutex);
-        return ;
-    }
-    timestamp = get_curr_time_ms() - philo->data->start;
-    printf("%lld %d %s\n", timestamp, philo->id, status);
-    pthread_mutex_unlock(&philo->data->print_mutex);
+	pthread_mutex_lock(&philo->data->print_mutex);
+	if (check_is_dead(philo))
+	{
+		pthread_mutex_unlock(&philo->data->print_mutex);
+		return ;
+	}
+	timestamp = get_curr_time_ms() - philo->data->start;
+	printf("%lld %d %s\n", timestamp, philo->id, status);
+	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 void	free_data(t_data *data)
 {
-    int	i;
+	int	i;
 
-    if (!data)
-        return ;
-    i = 0;
-    while (i < data->number_philos)
-    {
-        pthread_mutex_destroy(&data->forks[i]);
-        pthread_mutex_destroy(&data->philos[i].meal_mutex);
-        i++;
-    }
-    pthread_mutex_destroy(&data->print_mutex);
-    pthread_mutex_destroy(&data->death_mutex);
-    if (data->forks)
-        free(data->forks);
-    if (data->philos)
-        free(data->philos);
+	if (!data)
+		return ;
+	i = 0;
+	while (i < data->number_philos)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&data->philos[i].meal_mutex);
+		i++;
+	}
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
 }
-

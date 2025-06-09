@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:47:13 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/04 13:27:32 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/09 13:30:05 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,70 +23,73 @@ int	init_global_mutexes(t_data *data)
 	return (0);
 }
 
-int init_philos(t_data *data)
+int	init_philos(t_data *data)
 {
-    int i;
+	int	i;
 
-    data->philos = malloc(sizeof(t_philo) * data->number_philos);
-    if (!data->philos)
-        return (0);
-    i = 0;
-    while (i < data->number_philos)
-    {
-        memset(&data->philos[i], 0 ,sizeof(t_philo));
-        data->philos[i].id = i + 1;
-        data->philos[i].data = data;
-        data->philos[i].last_meal = get_curr_time_ms();
-        data->philos[i].meals_eaten = 0;
-        pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
+	data->philos = malloc(sizeof(t_philo) * data->number_philos);
+	if (!data->philos)
+		return (0);
+	i = 0;
+	while (i < data->number_philos)
+	{
+		memset(&data->philos[i], 0, sizeof(t_philo));
+		data->philos[i].id = i + 1;
+		data->philos[i].data = data;
+		data->philos[i].last_meal = get_curr_time_ms();
+		data->philos[i].meals_eaten = 0;
+		pthread_mutex_init(&data->philos[i].meal_mutex, NULL);
 		i++;
-    }
-    return (1);
+	}
+	return (1);
 }
 
-int init_data(t_data *data, char **av)
+int	init_data(t_data *data, char **av)
 {
-    int i = 0;
-    memset(data, 0, sizeof(t_data));
-    data->number_philos = ft_atoi(av[1]);
-    data->die_time = ft_atoi(av[2]);
-    data->eat_time = ft_atoi(av[3]);
-    data->sleep_time = ft_atoi(av[4]);
-    if(av[5])
-        data->must_eat_count = ft_atoi(av[5]);
-    else
-        data->must_eat_count = -1;
-    data->dead = 0;
-    data->start = get_curr_time_ms();
-    data->forks = malloc(sizeof(pthread_mutex_t) * data->number_philos);
-    if(!data->forks)
-        return (0);
-    while(i < data->number_philos)
-    {
-        if(pthread_mutex_init(&data->forks[i], NULL) != 0)
-            return (0);
-        i++;
-    }
-    return(1);
+	int	i;
+
+	i = 0;
+	memset(data, 0, sizeof(t_data));
+	data->number_philos = ft_atoi(av[1]);
+	data->die_time = ft_atoi(av[2]);
+	data->eat_time = ft_atoi(av[3]);
+	data->sleep_time = ft_atoi(av[4]);
+	if (av[5])
+		data->must_eat_count = ft_atoi(av[5]);
+	else
+		data->must_eat_count = -1;
+	data->dead = 0;
+	data->start = get_curr_time_ms();
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->number_philos);
+	if (!data->forks)
+		return (0);
+	while (i < data->number_philos)
+	{
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int    init(t_data *data, char **av)
+int	init(t_data *data, char **av)
 {
-    if (!init_data(data, av) || !init_philos(data) || init_global_mutexes(data))
-        return (1);
-    return (0);
+	if (!init_data(data, av) || !init_philos(data) || init_global_mutexes(data))
+		return (1);
+	return (0);
 }
-int check_args(char **av)
+
+int	check_args(char **av)
 {
-    if (ft_atoi(av[1]) < 1)
-        return (printf("Enter a valid philo number"),1);
-    if (ft_atoi(av[2]) < 1)
-        return (printf("Enter a valid time to die number"), 1);
-    if (ft_atoi(av[3]) < 1)
-        return (printf("Enter a valid time to eat number"), 1);
-    if (ft_atoi(av[4]) < 1)
-        return (printf("Enter a valid time to sleep number"), 1);
-    if (ft_atoi(av[5]) < 0)
-        return (printf("Enter a valid times to eat number"), 1);
-    return (0);
+	if (ft_atoi(av[1]) < 1)
+		return (printf("Enter a valid philo number"), 1);
+	if (ft_atoi(av[2]) < 1)
+		return (printf("Enter a valid time to die number"), 1);
+	if (ft_atoi(av[3]) < 1)
+		return (printf("Enter a valid time to eat number"), 1);
+	if (ft_atoi(av[4]) < 1)
+		return (printf("Enter a valid time to sleep number"), 1);
+	if (ft_atoi(av[5]) < 0)
+		return (printf("Enter a valid times to eat number"), 1);
+	return (0);
 }
