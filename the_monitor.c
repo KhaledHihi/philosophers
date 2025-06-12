@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 15:11:29 by khhihi            #+#    #+#             */
-/*   Updated: 2025/06/09 13:28:24 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/06/11 15:46:28 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ static int	check_death(t_data *data, int i)
 
 int	check_meals(t_data *data)
 {
-	int	i;
-	int	meals;
-
+	int (i), (meals);
 	meals = 0;
 	i = 0;
 	if (data->must_eat_count == -1)
@@ -60,9 +58,12 @@ int	check_meals(t_data *data)
 	}
 	if (data->number_philos == meals)
 	{
+		pthread_mutex_lock(&data->print_mutex);
 		pthread_mutex_lock(&data->death_mutex);
 		data->dead = 1;
+		printf("all philosophers have finished their meals\n");
 		pthread_mutex_unlock(&data->death_mutex);
+		pthread_mutex_unlock(&data->print_mutex);
 		return (1);
 	}
 	return (0);
